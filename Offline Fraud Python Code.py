@@ -8,11 +8,8 @@ ip_address = input("Enter IP address: ")
 amount = input("Enter amount: ")
 frequency = input("Enter frequency: ")
 
-# S2 if(transactionType = swipePay)
-if transaction_type == "SwipePay":
-    # S3 if(pin = valid)
-    if pin == "valid":
-        # S4 if(ip-address = valid)
+def valid_pin():
+    # S4 if(ip-address = valid)
         if ip_address == "valid":
             print("Transaction authorized")
         # S5 else(ip-address = in-valid)
@@ -28,6 +25,14 @@ if transaction_type == "SwipePay":
             # S9 else(amount = in-valid)
             else:
                 print("Transaction not authorized due to amount exceeded alert")
+
+
+
+def swipe_pay():
+    # S3 if(pin = valid)
+    if pin == "valid":
+        # calling function valid_pin
+        valid_pin()
     # S10 else(pin = in-valid)
     else:
         # S11 if(ip-address = in-valid)
@@ -39,14 +44,23 @@ if transaction_type == "SwipePay":
             reentered_pin = input("Re-enter PIN: ")
             if reentered_pin == "valid":
                 # Jump to step -S3
-                # This is achieved by continuing with the code execution from step S3
-                print(" ")
+                # calling function valid_pin
+                valid_pin()
             # S14 else(re-entered pin = in-valid)
             else:
                 print("Transaction not authorized due to fraud")
+
+
+
+
+
+# S2 if(transactionType = swipePay)
+if transaction_type == "SwipePay":
+   # calling function swipe_pay
+   swipe_pay()
 # S15 else(transactionType = touchPay)
 else:
     # Jump to step-4
-    # This is achieved by continuing with the code execution from step S4
-    print(" ")
+    valid_pin()
+
 
